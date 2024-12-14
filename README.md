@@ -1,5 +1,5 @@
 ## Overview
-This Discord bot provides various functionalities, including sending welcome messages, random encouragements, virtual hugs, and support messages. It also logs errors and ensures smooth user interaction.
+This Discord bot provides various functionalities, including sending welcome messages, random encouragements, virtual hugs, and support messages. It also logs errors and ensures smooth user interaction. This Discord bot is made for the Norwegian language.
 
 ---
 
