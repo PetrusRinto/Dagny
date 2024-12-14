@@ -1,0 +1,13 @@
+Her er en liste over tilgjengelige kommandoer:
+
+|----------------------------------------------------------------------------|
+| **!hjelp** - Sender en liste over kommandoer og skaperen av Dagny🧸
+|
+| **!oppmuntring** - Gir deg en oppmuntrene melding🥰
+|
+| **!klem** - Gir en varm virtuell klem🤗
+|
+| **!støtte** - Bruk i en diskusjon for å finne ut hvem Dagny er enig med💬⚖️
+|----------------------------------------------------------------------------|
+
+*Skaper: **PetrusRinto** - https://github.com/PetrusRinto -*
