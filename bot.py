@@ -77,8 +77,8 @@ encourage_message = load_encourage_message()
 
 # Sends an ecnouraging message in random    
 @bot.command(name='oppmuntring')
-async def send_encourage(ctx):
-    # Velg et tilfeldig sitat og send det
+async def send_encourage(
+    # Randomly choose an encouraging message
     response = random.choice(encourage_message)
     await ctx.send(response)
 
