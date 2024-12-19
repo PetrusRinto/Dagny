@@ -175,16 +175,16 @@ passionate_kiss_gifs = load_passionate_kiss_gifs()
 # Sends a passionate kiss message and gif to a mentioned user
 @bot.command(name='kyss')
 async def send_passionate_kiss(ctx, member: discord.Member = None):
-
+     # If no member is mentioned, use author as member.
     if not member:
         member = ctx.author
 
-        # Choose random messages/emojis/gifs
-        passionate_kiss_reject_text = random.choice(passionate_kiss_reject)
-        passionate_kiss_text = random.choice(passionate_kiss_message)
-        passionate_emoji = random.choice(passionate_kiss_emoji)
-        rejection_emoji = random.choice(passionate_rejection_emoji)
-        passionate_gifs = random.choice(passionate_kiss_gifs)
+    # Choose random messages/emojis/gifs
+    passionate_kiss_reject_text = random.choice(passionate_kiss_reject)
+    passionate_kiss_text = random.choice(passionate_kiss_message)
+    passionate_emoji = random.choice(passionate_kiss_emoji)
+    rejection_emoji = random.choice(passionate_rejection_emoji)
+    passionate_gifs = random.choice(passionate_kiss_gifs)
 
 # Reject if no user is mentioned
     if member == ctx.author:
@@ -194,8 +194,7 @@ async def send_passionate_kiss(ctx, member: discord.Member = None):
 
         # Send a kiss gif if a user is mentioned
         if passionate_gifs:
-            passionate_gif = random.choice(passionate_kiss_gifs)
-            await ctx.send(passionate_gif)
+            await ctx.send(passionate_gifs)
         else:
             await ctx.send('Beklager, jeg fant ingen gifs å sende.')
 
