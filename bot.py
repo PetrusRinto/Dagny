@@ -77,7 +77,7 @@ encourage_message = load_encourage_message()
 
 # Sends an ecnouraging message in random    
 @bot.command(name='oppmuntring')
-async def send_encourage(
+async def send_encourage(ctx):
     # Randomly choose an encouraging message
     response = random.choice(encourage_message)
     await ctx.send(response)
@@ -114,16 +114,86 @@ async def send_hug(ctx, member: discord.Member = None):
 
 # Checks if a user is mentioned or not
     if member == ctx.author:
-        await ctx.send(f"{bot.user.mention} gir en stor klem til {member.mention}! {hug_text}")
+        await ctx.send(f'{bot.user.mention} gir en stor klem til {member.mention}! {hug_text}')
     else:
-        await ctx.send(f"{ctx.author.mention} gir en stor virtuell klem til {member.mention}! {hug_text}")
+        await ctx.send(f'{ctx.author.mention} gir en stor virtuell klem til {member.mention}! {hug_text}')
 
     # Send a hug gif if gifs exists in the list
     if hug_gifs:
         hug_gif = random.choice(hug_gifs)
         await ctx.send(hug_gif)
     else:
-        await ctx.send("Beklager, jeg fant ingen gifs å sende.")
+        await ctx.send('Beklager, jeg fant ingen gifs å sende.')
+    
+# Load the passionate kiss message from a file
+def load_passionate_kiss_message():
+    try:
+        with open('passionate_kiss_message.txt', 'r', encoding='utf-8') as file:
+            return [line.strip() for line in file if line.strip()]
+    except FileNotFoundError:
+        return []
+
+# Load the passionate kiss rejection message from a file
+def load_passionate_kiss_reject():
+        try:
+            with open('passionate_kiss_reject.txt', 'r', encoding='utf-8') as file:
+                return [line.strip() for line in file if line.strip()]
+        except FileNotFoundError:
+            return []
+
+# Load the passionate kiss emojis from a file
+def load_passionate_kiss_emoji():
+    try:
+        with open('passionate_kiss_emoji.txt', 'r', encoding='utf-8') as file:
+            return [line.strip() for line in file if line.strip()]
+    except FileNotFoundError:
+        return []
+
+# Load the passionate rejection emojis from a file
+def load_passionate_rejection_emoji():
+        try:
+        with open('passionate_rejection_emoji.txt', 'r', encoding='utf-8') as file:
+            return [line.strip() for line in file if line.strip()]
+    except FileNotFoundError:
+        return []
+
+# Load the passinate kiss gif links from a file
+def load_passionate_kiss_gifs():
+    try:
+        with open('passionate_kiss_gifs.txt', 'r', encoding='utf-8') as file:
+            return [line.strip() for line in file if line.strip()]
+    except FileNotFoundError:
+        return []
+
+# Load data
+passionate_kiss_message = load_passionate_kiss_message()
+passionate_kiss_reject = load_passionate_kiss_reject()
+passionate_kiss_emoji = load_passionate_kiss_emoji()
+passionate_rejection_emoji = load_passionate_rejection_emoji()
+passionate_kiss_gifs = load_passionate_kiss_gifs()
+
+# Sends a passionate kiss message and gif to a mentioned user
+@bot.command(name='kyss')
+async def send_passionate_kiss(ctx, member: discord.Member = None):
+
+        # Choose random messages/emojis
+        passionate_kiss_reject_text = random.choice(passionate_kiss_reject)
+        passionate_kiss_text = random.choice(passionate_kiss_message)
+        passionate_emoji = random.choice(passionate_emoji)
+        rejection_emoji = random.choice(passionate_rejection_emoji)
+
+# Reject if no user is mentioned
+    if not member:
+        await ctx.send(f'{passionate_kiss_reject_text}{rejection_emoji}')
+    else:
+        await ctx.send(f'{ctx.author.mention} {passionate_kiss_text} {member.mention}! {passionate_emoji}')
+
+        # Send a kiss gif if a user is mentioned
+        if passionate_kiss_gifs:
+            passionate_kiss_gif = random.choice(passionate_kiss_gifs)
+            await ctx.send(passionate_kiss_gif)
+        else:
+            await ctx.send('Beklager, jeg fant ingen gifs å sende.')
 
 # Function to load support phrases from a file
 def load_support_phrases():
