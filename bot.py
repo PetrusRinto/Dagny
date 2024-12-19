@@ -151,7 +151,7 @@ def load_passionate_kiss_emoji():
 
 # Load the passionate rejection emojis from a file
 def load_passionate_rejection_emoji():
-        try:
+    try:
         with open('passionate_rejection_emoji.txt', 'r', encoding='utf-8') as file:
             return [line.strip() for line in file if line.strip()]
     except FileNotFoundError:
@@ -176,22 +176,26 @@ passionate_kiss_gifs = load_passionate_kiss_gifs()
 @bot.command(name='kyss')
 async def send_passionate_kiss(ctx, member: discord.Member = None):
 
-        # Choose random messages/emojis
+    if not member:
+        member = ctx.author
+
+        # Choose random messages/emojis/gifs
         passionate_kiss_reject_text = random.choice(passionate_kiss_reject)
         passionate_kiss_text = random.choice(passionate_kiss_message)
-        passionate_emoji = random.choice(passionate_emoji)
+        passionate_emoji = random.choice(passionate_kiss_emoji)
         rejection_emoji = random.choice(passionate_rejection_emoji)
+        passionate_gifs = random.choice(passionate_kiss_gifs)
 
 # Reject if no user is mentioned
-    if not member:
+    if member == ctx.author:
         await ctx.send(f'{passionate_kiss_reject_text}{rejection_emoji}')
     else:
         await ctx.send(f'{ctx.author.mention} {passionate_kiss_text} {member.mention}! {passionate_emoji}')
 
         # Send a kiss gif if a user is mentioned
-        if passionate_kiss_gifs:
-            passionate_kiss_gif = random.choice(passionate_kiss_gifs)
-            await ctx.send(passionate_kiss_gif)
+        if passionate_gifs:
+            passionate_gif = random.choice(passionate_kiss_gifs)
+            await ctx.send(passionate_gif)
         else:
             await ctx.send('Beklager, jeg fant ingen gifs å sende.')
 

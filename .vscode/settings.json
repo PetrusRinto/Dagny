@@ -1,0 +1,4 @@
+{
+    "python.analysis.autoImportCompletions": false,
+    "terminal.integrated.defaultProfile.windows": "Git Bash"
+}
