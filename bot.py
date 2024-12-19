@@ -135,11 +135,11 @@ def load_passionate_kiss_message():
 
 # Load the passionate kiss rejection message from a file
 def load_passionate_kiss_reject():
-        try:
-            with open('passionate_kiss_reject.txt', 'r', encoding='utf-8') as file:
-                return [line.strip() for line in file if line.strip()]
-        except FileNotFoundError:
-            return []
+    try:
+        with open('passionate_kiss_reject.txt', 'r', encoding='utf-8') as file:
+            return [line.strip() for line in file if line.strip()]
+    except FileNotFoundError:
+        return []
 
 # Load the passionate kiss emojis from a file
 def load_passionate_kiss_emoji():
