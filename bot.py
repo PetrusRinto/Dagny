@@ -135,11 +135,11 @@ def load_passionate_kiss_message():
 
 # Load the passionate kiss rejection message from a file
 def load_passionate_kiss_reject():
-        try:
-            with open('passionate_kiss_reject.txt', 'r', encoding='utf-8') as file:
-                return [line.strip() for line in file if line.strip()]
-        except FileNotFoundError:
-            return []
+    try:
+        with open('passionate_kiss_reject.txt', 'r', encoding='utf-8') as file:
+            return [line.strip() for line in file if line.strip()]
+    except FileNotFoundError:
+        return []
 
 # Load the passionate kiss emojis from a file
 def load_passionate_kiss_emoji():
@@ -175,7 +175,7 @@ passionate_kiss_gifs = load_passionate_kiss_gifs()
 # Sends a passionate kiss message and gif to a mentioned user
 @bot.command(name='kyss')
 async def send_passionate_kiss(ctx, member: discord.Member = None):
-     # If no member is mentioned, use author as member.
+    # If no member is mentioned, use author as member.
     if not member:
         member = ctx.author
 
