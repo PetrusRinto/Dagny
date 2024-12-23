@@ -187,7 +187,7 @@ async def send_passionate_kiss(ctx, member: discord.Member = None):
     passionate_gifs = random.choice(passionate_kiss_gifs)
 
 # Reject if no user is mentioned
-    if member == ctx.author:
+    if member == ctx.author or member == ctx.bot.user:
         await ctx.send(f'{passionate_kiss_reject_text}{rejection_emoji}')
     else:
         await ctx.send(f'{ctx.author.mention} {passionate_kiss_text} {member.mention}! {passionate_emoji}')
@@ -198,13 +198,50 @@ async def send_passionate_kiss(ctx, member: discord.Member = None):
         else:
             await ctx.send('Beklager, jeg fant ingen gifs å sende.')
 
+# Function to load smooch text from a file
+def load_smooch_text():
+    try:
+        with open ('smooch_message.txt', 'r', encoding='utf-8') as file:
+            return [line.strip() for line in file if line.strip()]
+    except FileNotFoundError
+        return [' gir et nus til ']
+
+# Function to load smooch emojis from a file
+def load_smooch_emojis():
+    try:
+        with open('smooch_emojis.txt', 'r', encoding='utf-8') as file:
+            return [line.strip() for line in file if line.strip()]
+    except FileNotFoundError:
+        return ['💕']
+    
+# Function to load smooch gifs from a file
+def load_smooch_gifs():
+    try:
+        with open('smooch_gifs.txt', 'r', encoding='utf-8') as file:
+            return [line.strip() for line in file if line.strip()]
+    except FileNotFoundError:
+        return []
+    
+# load data
+smooch_text = load_smooch_text()
+smooch_emojis = load_smooch_text()
+smooch_gifs = load_smooch_gifs()
+
+# The command !nus will give someone a smooch
+@bot.command(name='nus')
+async def nus(ctx, member: discord.Member = None):
+
+    # If no member is mentioned, use Dagny as sender
+    if not member:
+        member = ctx.author
+
 # Function to load support phrases from a file
 def load_support_phrases():
     try:
         with open('support_phrases.txt', 'r', encoding='utf-8') as file:
             return [line.strip() for line in file if line.strip()]
     except FileNotFoundError:
-        return ['støtter faktisk']  # Fallback if file is not found
+        return [' støtter faktisk ']  # Fallback if file is not found
 
 # Function to load support emojis from a file
 def load_support_emojis():
@@ -221,7 +258,7 @@ support_phrases = load_support_phrases()
 support_emojis = load_support_emojis()
 
 # The command !støtte will choose a person to support
-@bot.command(name='støtte', help='Gives support to a specific member or a random person')
+@bot.command(name='støtte')
 async def støtte(ctx, member: discord.Member = None):
     # If a member is mentioned, we support that person directly
     if member:
