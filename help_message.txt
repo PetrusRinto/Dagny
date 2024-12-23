@@ -7,7 +7,9 @@ Her er en liste over tilgjengelige kommandoer:
 |
 | **!klem** - Gir en varm virtuell klem🤗
 |
-| **!kyss** - Gi et lidenskapelig kyss😏
+| **!kyss** - Gi et lidenskapelig kyss på egen risiko😏
+|
+| **!nus** - Gi et nus til en du er glad i😚
 |
 | **!støtte** - Bruk i en diskusjon for å finne ut hvem Dagny er enig med💬⚖️
 |----------------------------------------------------------------------------|

@@ -98,6 +98,7 @@ def load_hug_gifs():
     except FileNotFoundError:
         return []
 
+# Load data
 hug_message = load_hug_message()
 hug_gifs = load_hug_gifs()
 
@@ -199,11 +200,11 @@ async def send_passionate_kiss(ctx, member: discord.Member = None):
             await ctx.send('Beklager, jeg fant ingen gifs å sende.')
 
 # Function to load smooch text from a file
-def load_smooch_text():
+def load_smooch_texts():
     try:
         with open ('smooch_message.txt', 'r', encoding='utf-8') as file:
             return [line.strip() for line in file if line.strip()]
-    except FileNotFoundError
+    except FileNotFoundError:
         return [' gir et nus til ']
 
 # Function to load smooch emojis from a file
@@ -223,8 +224,8 @@ def load_smooch_gifs():
         return []
     
 # load data
-smooch_text = load_smooch_text()
-smooch_emojis = load_smooch_text()
+smooch_texts = load_smooch_texts()
+smooch_emojis = load_smooch_emojis()
 smooch_gifs = load_smooch_gifs()
 
 # The command !nus will give someone a smooch
@@ -234,6 +235,26 @@ async def nus(ctx, member: discord.Member = None):
     # If no member is mentioned, use Dagny as sender
     if not member:
         member = ctx.author
+    
+    # Choose random text/emojis/gifs
+    smooch_text = random.choice(smooch_texts)
+    smooch_emoji = random.choice(smooch_emojis)
+    smooch_gif = random.choice(smooch_gifs)
+    passionate_kiss_reject_text = random.choice(passionate_kiss_reject)
+    rejection_emoji = random.choice(passionate_rejection_emoji)
+
+    # Sends a smooch from Dagny if user is not mentioned, else author sends smooch to mentioned user
+    if member == ctx.author or member == ctx.bot.user:
+        await ctx.send(f'{passionate_kiss_reject_text}{rejection_emoji}')
+    else:
+        await ctx.send(f'{ctx.author.mention} {smooch_text} {member.mention}!{smooch_emoji}')
+    
+        # Send a smooch gif if gifs exists in the list
+        if smooch_gifs:
+            await ctx.send(smooch_gif)
+        else:
+            await ctx.send('Beklager, jeg fant ingen gifs å sende.')
+
 
 # Function to load support phrases from a file
 def load_support_phrases():
