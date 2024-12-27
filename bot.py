@@ -205,7 +205,7 @@ def load_smooch_texts():
         with open ('smooch_message.txt', 'r', encoding='utf-8') as file:
             return [line.strip() for line in file if line.strip()]
     except FileNotFoundError:
-        return [' gir et nus til ']
+        return [' gir et nuss til ']
 
 # Function to load smooch emojis from a file
 def load_smooch_emojis():
@@ -229,7 +229,7 @@ smooch_emojis = load_smooch_emojis()
 smooch_gifs = load_smooch_gifs()
 
 # The command !nus will give someone a smooch
-@bot.command(name='nus')
+@bot.command(name='nuss')
 async def nus(ctx, member: discord.Member = None):
 
     # If no member is mentioned, use Dagny as sender
